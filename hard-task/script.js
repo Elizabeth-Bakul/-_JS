@@ -1,17 +1,56 @@
 "use strict";
-let num = 266219;
 
-function getMultiNumber(num) {
-  let mul = 1;
-  let tmp = 0;
-  while (num) {
-    tmp = num % 10;
-    num = (num - tmp) / 10;
-    mul *= tmp;
-  }
-  return mul;
+let lang = prompt("Введите язык (ru/en): ");
+
+let dayRus = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
+
+let dayEng = [
+  "Monday",
+  "Tuesday",
+  "Wendensday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+
+if (lang === 'ru') {
+  console.log(dayRus);
+} else if (lang === 'en') {
+  console.log(dayEng);
+} else {
+  console.log('Неправильный язык');
 }
-let result = getMultiNumber(num);
-console.log(result);
-console.log(result ** 3);
-console.log(String(result ** 3).slice(0,2));
+
+switch (lang) {
+  case "ru":
+    console.log(dayRus);
+    break;
+  case "en":
+    console.log(dayEng);
+    break;
+  default:
+    console.log('Неправильный язык');
+}
+
+let day = {
+  'ru':  dayRus,
+  'en': dayEng
+};
+console.log(day[lang]);
+
+
+//task 2
+let namePerson = prompt("Имя участника курса: ");
+let profession;
+namePerson === 'Артём' ?  profession = 'Директор' :  namePerson === 'Максим' ? profession = 'Преподаватель' : profession = 'Студент';
+console.log(profession);
