@@ -1,19 +1,44 @@
 "use strict";
+console.log("Task 1");
+let arr = ["3458", "4356", "345678", "1234", "26668", "4555890", "22234434"];
 
-let string = prompt("Введите строку");
-
-let lineUpgrade = function (string) {
-  if (typeof string === "string") {
-    string = string.trim();
-    if (string.length > 30) {
-      string = string.substr(0, 30) + "...";
-    }
-    return string;
-  } else {
-    return "Это не строка";
+console.log("Вариант 1");
+arr.forEach(function (item) {
+  if (item.charAt(0) === "2" || item.charAt(0) === "4") {
+    console.log(item);
   }
-};
+});
 
-console.log(lineUpgrade(string));
-console.log(lineUpgrade(5));
-console.log(lineUpgrade(true));
+console.log("Вариант 2");
+arr.forEach(function (item) {
+  if (item.startsWith("2") || item.startsWith("4")) {
+    console.log(item);
+  }
+});
+
+console.log("Task 2");
+console.log("Вариант 1");
+let n = 100;
+
+nextPrime: for (let i = 2; i <= n; i++) {
+  for (let j = 2; j < i; j++) {
+    if (i % j === 0) {
+      continue nextPrime;
+    }
+  }
+  console.log("Простое число " + i + ".Делители числа 1 и " + i);
+}
+console.log("Вариант 2");
+for (let i = 2; i <= n; i++) {
+  let j = 2;
+  let flag = false;
+  while (j < i && !flag) {
+    if (i % j === 0) {
+      flag = true;
+    }
+    j++;
+  }
+  if (!flag) {
+    console.log("Простое число " + i + ".Делители числа 1 и " + i);
+  }
+}
