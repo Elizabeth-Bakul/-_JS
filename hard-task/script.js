@@ -42,3 +42,13 @@ for (let i = 2; i <= n; i++) {
     console.log("Простое число " + i + ".Делители числа 1 и " + i);
   }
 }
+console.log("Вариант 3 - Решето Эратосфена");
+let prime = Array(101).fill(true);
+for (var i = 2; i < 100; ++i) {
+  if (prime[i]) {
+    console.log("Простое число " + i + ".Делители числа 1 и " + i);
+    for (var j = i * i; j < 100; j += i) {
+      prime[j] = false;
+    }
+  }
+}
