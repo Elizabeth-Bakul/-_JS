@@ -1,5 +1,39 @@
 "use strict";
-let money;
+
+const buttonCalculate = document.getElementById('start');
+const buttonCancel = document.getElementById('cancel');
+
+const buttonAddIncome = document.getElementsByTagName('button')[0];
+const buttonAddExpenses = document.getElementsByTagName("button")[1];
+//Депозит
+const depositCheck =  document.querySelector('#deposit-check');
+const depositAmount = document.querySelector('.deposit-amount');
+const depositPercent = document.querySelector('.deposit-percent');
+const depositBank = document.querySelector('.deposit-bank');
+console.log(depositBank);
+//возможные доходы
+const additionalIncomeItems = document.querySelectorAll(
+  ".additional_income-item"
+);
+//Цель
+const targetAmount = document.querySelector('.target-amount');
+//результат
+const values = document.querySelectorAll('[class*="-value"]');
+//месячный доход
+const salaryAmount = document.querySelector('.salary-amount');
+//дополнительный доход
+const incomeTitle = document.querySelector('input.income-title');
+const incomeAmount = document.querySelector('.income-amount');
+//Возможные расходы
+const additionalIncomeItem = document.querySelector('.additional_expenses-item');
+//Обязательные расходы
+const expensesTitle = document.querySelector('input.expenses-title');
+const expensesAmount = document.querySelector('.expenses-amount');
+
+//Период
+const peroidSelect = document.querySelector('.period-select');
+
+/* let money;
 
 let isNumber = function (n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
@@ -132,4 +166,4 @@ console.log("Уровень дохода", appData.getStatusIncome());
 console.log("Наша программа включает в себя данные: ");
 for (let key in appData) {
   console.log(key, appData[key]);
-}
+} */
