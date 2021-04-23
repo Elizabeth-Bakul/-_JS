@@ -12,14 +12,13 @@ let todoData = [];
 const render = function () {
   // check the first init of document
   todoData =
-    localStorage.getItem("todoData") === null
-      ? todoData
-      : JSON.parse(localStorage.todoData);
+    localStorage.getItem("todoData") === null ? todoData : JSON.parse(localStorage.todoData);
 
   todoList.textContent = "";
   completedList.textContent = "";
 
   todoData.forEach(function (item) {
+    console.log(item);
     const li = document.createElement("li");
     li.classList.add("todo-item");
 
