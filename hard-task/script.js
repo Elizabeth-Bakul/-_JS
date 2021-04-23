@@ -103,9 +103,8 @@ function getData() {
   div2.innerHTML = html2;
 }
 
-document.body.appendChild(div);
-document.body.appendChild(div2);
+document.body.append(div);
+document.body.append(div2);
 setInterval(()=> {
-  console.log('Привет');
   getData();
 }, 1000);
