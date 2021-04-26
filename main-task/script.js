@@ -85,6 +85,10 @@ class AppData {
     });
     buttonAddIncome.setAttribute("disabled", "true");
     buttonAddExpenses.setAttribute("disabled", "true");
+    depositCheck.setAttribute("disabled", "true");
+    depositAmount.setAttribute("disabled", "true");
+    depositPercent.setAttribute("disabled", "true");
+    depositBank.setAttribute("disabled", "true");
   }
   addExpensesBlock() {
     let cloneExpenses = expensesItems[0].cloneNode(true);
@@ -215,7 +219,20 @@ class AppData {
     buttonCalculate.disabled = true;
     buttonAddIncome.removeAttribute("disabled", "disabled");
     buttonAddExpenses.removeAttribute("disabled", "disabled");
+
     depositCheck.checked = false;
+depositCheck.removeAttribute("disabled");
+depositAmount.removeAttribute("disabled");
+depositPercent.removeAttribute("disabled");
+depositBank.removeAttribute("disabled");
+    depositBank.style.display = "none";
+    depositBank.value = 0;
+
+    depositAmount.style.display = "none";
+    depositAmount.value = "";
+
+    depositPercent.style.display = "none";
+    depositPercent.value = "";
   }
   showResult() {
     const _this = this;
