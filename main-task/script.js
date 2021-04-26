@@ -226,7 +226,7 @@ depositAmount.removeAttribute("disabled");
 depositPercent.removeAttribute("disabled");
 depositBank.removeAttribute("disabled");
     depositBank.style.display = "none";
-    depositBank.value = 0;
+    depositBank.value = "";
 
     depositAmount.style.display = "none";
     depositAmount.value = "";
