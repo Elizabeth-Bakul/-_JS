@@ -42,18 +42,24 @@ window.addEventListener("DOMContentLoaded", () => {
   countTimer("28 april 2021");
 
   const toggleMenu = () => {
-    const btnMenu = document.querySelector(".menu"),
-      menu = document.querySelector("menu"),
-      closeBtn = document.querySelector(".close-btn"),
-      menuItems = menu.querySelectorAll("ul>li");
+    const menu = document.querySelector("menu");
 
     const handlerMenu = () => {
       menu.classList.toggle("active-menu");
     };
 
-    btnMenu.addEventListener("click", handlerMenu);
-    closeBtn.addEventListener("click", handlerMenu);
-    menuItems.forEach((item) => item.addEventListener("click", handlerMenu));
+    document.addEventListener("click", (e) => {
+      let target = e.target;
+      if (
+        target.closest(".menu") ||
+        target.classList.contains("close-btn") ||
+        target.matches("ul>li>a")
+      ) {
+        handlerMenu();
+      } else if (!target.closest(".active-menu")) {
+        menu.classList.remove("active-menu");
+      }
+    });
   };
   toggleMenu();
   const togglePopUp = () => {
@@ -88,8 +94,15 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    closePopUpButton.addEventListener("click", () => {
-      popup.style.display = "none";
+    popup.addEventListener("click", (e) => {
+      let target = e.target;
+      // если нажимаем кнопку "Закрыть" или нажимаем вне области окна, то закрываем его
+      if (
+        target.classList.contains("popup-close") ||
+        !target.closest(".popup-content")
+      ) {
+        popup.style.display = "none";
+      }
     });
   };
   togglePopUp();
@@ -100,10 +113,43 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollLink.addEventListener("click", (event) => {
       event.preventDefault();
       const id = scrollLink.getAttribute("href");
-      document.querySelector(id).scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      if(id!=="#close"){
+        document.querySelector(id).scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+      
     });
   }
+  const toggleTabs = () => {
+    const tabsHeader = document.querySelector(".service-header"),
+      tabs = document.querySelectorAll(".service-header-tab"),
+      tabsContent = document.querySelectorAll(".service-tab");
+
+    const toggleTabContent = (index) => {
+      tabsContent.forEach((item, i) => {
+        if (i === index) {
+          tabs[i].classList.add("active");
+          item.classList.remove("d-none");
+        } else {
+          tabs[i].classList.remove("active");
+          item.classList.add("d-none");
+        }
+      });
+    };
+
+    tabsHeader.addEventListener("click", (e) => {
+      let target = e.target;
+      target = target.closest(".service-header-tab"); // если нет класса, поднимается выше по DOM-дереву к родителю
+      if (target) {
+        tabs.forEach((item, i) => {
+          if (item === target) {
+            toggleTabContent(i);
+          }
+        });
+      }
+    });
+  };
+  toggleTabs();
 });
