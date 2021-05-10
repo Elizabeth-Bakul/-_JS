@@ -525,8 +525,8 @@ window.addEventListener("DOMContentLoaded", () => {
       // Валидация данных при вводе телефона
       form.addEventListener("input", (e) => {
         if (e.target.matches('input[name="user_phone"]')) {
-          e.target.setAttribute("pattern", "^[0-9-+s()]{11,18}$");
-          e.target.value = e.target.value.replace(/[^\d\+\-()]/g, "");
+          e.target.setAttribute("pattern", "^[0-9+]{11,18}$");
+          e.target.value = e.target.value.replace(/[^\d\+]/g, "");
         }
       });
 
@@ -544,8 +544,8 @@ window.addEventListener("DOMContentLoaded", () => {
       // Валидация данных при вводе имени
       form.addEventListener("input", (e) => {
         if (e.target.matches('input[name="user_name"]')) {
-          e.target.setAttribute("pattern", "[А-Яа-яЁё-]{2,}");
-          e.target.value = e.target.value.replace(/[^А-Яа-яЁё\s-]|/g, "");
+          e.target.setAttribute("pattern", "[А-Яа-яЁё ]{2,}");
+          e.target.value = e.target.value.replace(/[^А-Яа-яЁё\s]|/g, "");
         }
       });
 
