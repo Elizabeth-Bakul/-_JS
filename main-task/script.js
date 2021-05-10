@@ -298,7 +298,10 @@ window.addEventListener("DOMContentLoaded", () => {
         e.target.value = e.target.value.replace(/[^0-9()-]/g, "");
       }
       if (e.target.matches('input[name="user_email"]')) {
-        e.target.value = e.target.value.replace(/[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi, "");
+        e.target.value = e.target.value.replace(
+          /[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi,
+          ""
+        );
         //e.target.value = e.target.value.replace(/[а-яё\s,?^]/gi, "");
       }
       if (e.target.matches('input[name="user_name"]')) {
@@ -375,8 +378,81 @@ window.addEventListener("DOMContentLoaded", () => {
         true
       );
     });
+  };
+  checkInputs();
 
+  const calc = (price = 100) => {
+    const calcBlock = document.querySelector(".calc-block"),
+      calcType = document.querySelector(".calc-type"),
+      calcSquare = document.querySelector(".calc-square"),
+      calcDay = document.querySelector(".calc-day"),
+      calcCount = document.querySelector(".calc-count"),
+      totalValue = document.getElementById("total");
 
-  }
- checkInputs();
+    const countSum = () => {
+      let total = 0,
+        countValue = 1,
+        dayValue = 1;
+      const typeValue = calcType.options[calcType.selectedIndex].value,
+        squareValue = +calcSquare.value;
+
+      if (calcCount.value > 1) {
+        countValue += (calcCount.value - 1) / 10;
+      }
+
+      if (calcDay.value && calcDay.value < 5) {
+        dayValue *= 2;
+      } else if (calcDay.value && calcDay.value < 10) {
+        dayValue *= 1.5;
+      }
+
+      if (typeValue && squareValue) {
+        total = price * typeValue * squareValue * countValue * dayValue;
+      }
+
+      totalValue.textContent = total;
+
+      function animate({ timing, draw, duration }) {
+        let start = performance.now();
+        requestAnimationFrame(function animate(time) {
+          let timeFraction = (time - start) / duration;
+          if (timeFraction > 1) {
+            timeFraction = 1;
+          }
+          let progress = timing(timeFraction);
+          draw(progress);
+          if (timeFraction < 1) {
+            requestAnimationFrame(animate);
+          }
+        });
+      }
+
+      const animation = () => {
+        animate({
+          duration: 1000,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            totalValue.textContent = Math.floor(progress * total);
+          },
+        });
+      };
+      animation();
+    };
+
+    calcBlock.addEventListener("change", (event) => {
+      const target = event.target;
+      if (
+        target === calcType ||
+        target === calcSquare ||
+        target === calcDay ||
+        target === calcCount
+      ) {
+        countSum();
+      }
+    });
+  };
+
+  calc(100);
 });
