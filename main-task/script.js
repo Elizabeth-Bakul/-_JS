@@ -379,6 +379,90 @@ window.addEventListener("DOMContentLoaded", () => {
       );
     });
   };
+  const form3 = document.getElementById("form3");
+    form3.addEventListener("input", (e) => {
+      if (e.target.matches('input[name="user_phone"]')) {
+        e.target.value = e.target.value.replace(/[^0-9()-]/g, "");
+      }
+      if (e.target.matches('input[name="user_email"]')) {
+        e.target.value = e.target.value.replace(
+          /[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi,
+          ""
+        );
+        //e.target.value = e.target.value.replace(/[а-яё\s,?^]/gi, "");
+      }
+      if (e.target.matches('input[name="user_name"]')) {
+        e.target.value = e.target.value.replace(/[^а-яё\s-]|/gi, "");
+      }
+    });
+    const input2 = document.querySelectorAll("#form3 input");
+    input2.forEach((elem) => {
+      elem.addEventListener(
+        "blur",
+        (event) => {
+          // Заменяет 2 и более тире на один
+          elem.value = elem.value.replace(/-{1,}/g, "-");
+          // Заменяет 2 и более пробела на один
+          elem.value = elem.value.replace(/\s{1,}/gi, " ");
+          // Удаляет пробелы и тире в начале и конце строки
+          elem.value = elem.value.replace(/^\s|\s$|^-|-$/g, "");
+          // Приводит первую букву каждого слова в Верхний регистр в поле "Ваше имя"
+          if (elem.name === "user_name") {
+            let nameFirstLetter = [];
+            let word = elem.value.split(" ");
+            word.forEach((item) => {
+              item = item.toLowerCase();
+              item = item[0].toUpperCase() + item.slice(1);
+              nameFirstLetter.push(item);
+              elem.value = nameFirstLetter.join(" ");
+            });
+          }
+        },
+        true
+      );
+      const form3 = document.getElementById("form3");
+      form3.addEventListener("input", (e) => {
+        if (e.target.matches('input[name="user_phone"]')) {
+          e.target.value = e.target.value.replace(/[^0-9()-]/g, "");
+        }
+        if (e.target.matches('input[name="user_email"]')) {
+          e.target.value = e.target.value.replace(
+            /[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi,
+            ""
+          );
+          //e.target.value = e.target.value.replace(/[а-яё\s,?^]/gi, "");
+        }
+        if (e.target.matches('input[name="user_name"]')) {
+          e.target.value = e.target.value.replace(/[^а-яё\s-]|/gi, "");
+        }
+      });
+      const input2 = document.querySelectorAll("#form3 input");
+      input2.forEach((elem) => {
+        elem.addEventListener(
+          "blur",
+          (event) => {
+            // Заменяет 2 и более тире на один
+            elem.value = elem.value.replace(/-{1,}/g, "-");
+            // Заменяет 2 и более пробела на один
+            elem.value = elem.value.replace(/\s{1,}/gi, " ");
+            // Удаляет пробелы и тире в начале и конце строки
+            elem.value = elem.value.replace(/^\s|\s$|^-|-$/g, "");
+            // Приводит первую букву каждого слова в Верхний регистр в поле "Ваше имя"
+            if (elem.name === "user_name") {
+              let nameFirstLetter = [];
+              let word = elem.value.split(" ");
+              word.forEach((item) => {
+                item = item.toLowerCase();
+                item = item[0].toUpperCase() + item.slice(1);
+                nameFirstLetter.push(item);
+                elem.value = nameFirstLetter.join(" ");
+              });
+            }
+          },
+          true
+        );
+      });
+    });
   checkInputs();
 
   const calc = (price = 100) => {
