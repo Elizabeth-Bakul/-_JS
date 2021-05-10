@@ -514,7 +514,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const postData = (requestBody) => {
         return new Promise((resolve, reject) => {
           const request = new XMLHttpRequest();
-
           request.addEventListener("readystatechange", () => {
             if (request.readyState !== 4) {
               return;
@@ -525,7 +524,6 @@ window.addEventListener("DOMContentLoaded", () => {
               reject(request.statusText);
             }
           });
-
           request.open("POST", "server.php");
           request.setRequestHeader("Content-Type", "application/json");
           request.send(JSON.stringify(requestBody));
