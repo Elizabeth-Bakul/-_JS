@@ -298,7 +298,7 @@ window.addEventListener("DOMContentLoaded", () => {
         e.target.value = e.target.value.replace(/[^0-9()-]/g, "");
       }
       if (e.target.matches('input[name="user_email"]')) {
-        e.target.value = e.target.value.replace(/[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi, "");
+      e.target.value = e.target.value.replace(/[^a-z\!/\@/\~/\-/\_/\'/\*/]|/gi,"");
         //e.target.value = e.target.value.replace(/[а-яё\s,?^]/gi, "");
       }
       if (e.target.matches('input[name="user_name"]')) {
@@ -338,7 +338,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       if (e.target.matches('input[name="user_email"]')) {
         e.target.value = e.target.value.replace(
-          /[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi,
+          /[^a-z\!/\@/\~/\-/\_/\'/\*/]|/gi,
           ""
         );
       }
@@ -382,7 +382,7 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       if (e.target.matches('input[name="user_email"]')) {
         e.target.value = e.target.value.replace(
-          /[^a-z\!/\@/\~/\-/\_/\'/\*/\S]|/gi,
+          /[^a-z\!/\@/\~/\-/\_/\'/\*/]|/gi,
           ""
         );
         //e.target.value = e.target.value.replace(/[а-яё\s,?^]/gi, "");
@@ -417,6 +417,7 @@ window.addEventListener("DOMContentLoaded", () => {
         true
       );
     });
-  }
- checkInputs();
+  };
+
+  checkInputs();
 });
