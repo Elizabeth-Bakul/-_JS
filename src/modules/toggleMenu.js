@@ -18,8 +18,19 @@ const toggleMenu = () => {
     }
   });
 };
-const scrollLinks = document.querySelectorAll("a");
+const menu = document.querySelector("menu");
+const scrollLinks = menu.querySelectorAll("a");
+const main = document.querySelector("main");
+const scrollLink2 = main.querySelector("a");
 
+scrollLink2.addEventListener("click", (event) => {
+    event.preventDefault();
+    const id = scrollLink2.getAttribute("href");
+      document.querySelector(id).scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    })
 for (const scrollLink of scrollLinks) {
   scrollLink.addEventListener("click", (event) => {
     event.preventDefault();
